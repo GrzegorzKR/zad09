@@ -48,22 +48,30 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-const addLeadingZero = fieldValue => {
-  if (fieldValue.length === 1) {
-    return fieldValue.padStart(2, '0');
+const addLeadingZero = value => {
+  if (value.length === 1) {
+    return value.padStart(2, '0');
   } else {
-    return fieldValue;
+    return value;
   }
 };
 
 const timeCounter = () => {
   let timerId = setInterval(() => {
     const timeObject = convertMs(userSelectedDate - new Date());
-    console.log(timeObject);
-    $seconds.innerHTML = addLeadingZero(timeObject.seconds);
-    $minutes.innerHTML = addLeadingZero(timeObject.minutes);
-    $hours.innerHTML = addLeadingZero(timeObject.hours);
-    $days.innerHTML = addLeadingZero(timeObject.days);
+    if (
+      timeObject.days === 0 &&
+      timeObject.hours === 0 &&
+      timeObject.minutes === 0 &&
+      timeObject.seconds >= 0
+    ) {
+      $seconds.innerHTML = addLeadingZero(String(timeObject.seconds));
+      $minutes.innerHTML = addLeadingZero(String(timeObject.minutes));
+      $hours.innerHTML = addLeadingZero(String(timeObject.hours));
+      $days.innerHTML = addLeadingZero(String(timeObject.days));
+    } else {
+      clearInterval(timerId);
+    }
   }, 1000);
 };
 
