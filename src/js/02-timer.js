@@ -60,9 +60,9 @@ const timeCounter = () => {
   let timerId = setInterval(() => {
     const timeObject = convertMs(userSelectedDate - new Date());
     if (
-      timeObject.days === 0 &&
-      timeObject.hours === 0 &&
-      timeObject.minutes === 0 &&
+      timeObject.days >= 0 &&
+      timeObject.hours >= 0 &&
+      timeObject.minutes >= 0 &&
       timeObject.seconds >= 0
     ) {
       $seconds.innerHTML = addLeadingZero(String(timeObject.seconds));
