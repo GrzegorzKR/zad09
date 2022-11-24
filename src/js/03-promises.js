@@ -20,10 +20,7 @@ function createPromise(position, delay) {
 
 const generatePromises = event => {
   event.preventDefault();
-
   let acc = Number($delayInput.value - $stepInput.value);
-  console.log(acc);
-
   for (let i = 1; i <= $amountInput.value; i++) {
     createPromise(i, (acc += Number($stepInput.value)))
       .then(value => Notiflix.Notify.success(value))
