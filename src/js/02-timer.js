@@ -57,6 +57,7 @@ const addLeadingZero = value => {
 };
 
 const timeCounter = () => {
+  $btnDataStart.disabled = true;
   let timerId = setInterval(() => {
     const timeObject = convertMs(userSelectedDate - new Date());
     if (
